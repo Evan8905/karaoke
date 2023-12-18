@@ -1,0 +1,53 @@
+<ListaInterfaz>:
+    BoxLayout:
+        orientation: 'vertical'
+
+        BoxLayout:
+            size_hint_y: None
+            height: '50dp'
+
+            TextInput:
+                id: participant_input
+                hint_text: 'Ingrese el nombre del participante'
+                multiline: False
+
+            Button:
+                text: 'Agregar Participante'
+                on_press: root.add_participant(participant_input.text)
+                size_hint_x: None
+                width: '180dp'
+                background_color: 0.4, 0.7, 0.2, 1
+                color: 1, 1, 1, 1
+
+        BoxLayout:
+            size_hint_y: None
+            height: '50dp'
+
+            TextInput:
+                id: song_input
+                hint_text: 'Ingrese la canción que quiere cantar'
+                multiline: False
+
+            Button:
+                text: 'Agregar Canción'
+                on_press: root.add_song(song_input.text)
+                size_hint_x: None
+                width: '150dp'
+                background_color: 0.2, 0.4, 0.7, 1
+                color: 1, 1, 1, 1
+
+        BoxLayout:
+            id: participants_layout  # Agrega el ID aquí
+            size_hint_y: None
+            height: '50dp'
+
+            Label:
+                text: 'Participantes:'
+                font_size: '16sp'
+
+        ScrollView:
+            GridLayout:
+                id: participants_grid
+                cols: 1
+                size_hint_y: None
+                height: self.minimum_height

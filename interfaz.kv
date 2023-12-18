@@ -1,0 +1,63 @@
+# interfaz.kv
+<Interfaz>:
+    FloatLayout:
+
+        BoxLayout:
+            id: party_type_layout
+            size_hint: None, None
+            size: '350dp', '50dp'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.75}
+
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: None, None
+            size: '350dp', '200dp'  # Ajuste el ancho aquí
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+
+            BoxLayout:
+                size_hint_y: None
+                height: '45dp'
+
+                TextInput:
+                    focus: True
+                    id: search_input
+                    hint_text: 'Ingrese el nombre de la canción'
+                    background_color: 0.9, 0.9, 0.9, 1
+                    foreground_color: 0, 0, 0, 1
+                    multiline: False
+                    on_text_validate: root.search_youtube(search_input.text); search_input.text = ''  # Limpia el campo de búsqueda después de buscar
+
+                Button:
+                    text: 'Buscar'
+                    on_press: 
+                        root.search_youtube(search_input.text)
+                        search_input.text = ''  # Limpia el campo de búsqueda
+                    size_hint_x: None
+                    width: '80dp'
+                    background_color: 0.7, 0.2, 0.2, 1
+                    color: 1, 1, 1, 1
+
+            BoxLayout:
+                size_hint_y: None
+                height: '50dp'
+
+                Label:
+                    text: 'Seleccionado: {}'.format(root.selected_party_type)
+
+            BoxLayout:
+                size_hint_y: None
+                height: '100dp'
+                pos_hint: {'x': 0.02, 'y': 0.02}
+
+                Label:
+                    id: participants_layout
+                    text: 'Participantes:'
+                    size_hint: None, None
+                    height: 100
+                    width: 300
+                    font_size: '16sp'
+
+        Label:
+            text: 'Fiesta By Evan'
+            font_size: '30sp'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.95}
